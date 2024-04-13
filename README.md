@@ -1,4 +1,5 @@
-# GenshinDaily
+# GenshinAutoDaily
+
 原神日常
 
 #### 说明
