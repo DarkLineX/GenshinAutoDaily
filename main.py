@@ -1,26 +1,15 @@
-import logging
-import subprocess
-
-logger = logging.getLogger("Genshin")
-
-
-# 检测
+import time
+from AutoCore import whereByText
+from GameProcess import init_win
+from UtilsPaddle import getPageText
 
 
-# 退出
-
-
-def openGame():
-    gen_proc = subprocess.Popen('D:\game\Genshin Impact Game\YuanShen.exe')
-    if gen_proc:
-        logger.error('启动成功')
-        return True
-    else:
-        logger.error('启动失败')
-        return False
+def login(x, y):
+    pass
 
 
 if __name__ == '__main__':
-    if openGame():
-        pass
-
+    win = init_win('')
+    while True:
+        whereByText(getPageText())
+        time.sleep(5)
