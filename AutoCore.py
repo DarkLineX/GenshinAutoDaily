@@ -4,7 +4,7 @@ from airtest.core.api import device, keyevent
 
 import UtilTouch
 import UtilsThread
-from UtilsPaddle import getTextPos, getPageText
+from GameProcess import killGame
 
 
 def whereByText(text):
@@ -18,7 +18,7 @@ def whereByText(text):
         print('登录掉了 需要重新登录')
         return 0
     elif 'CNRELWin' in text and '点击进入':
-        print('等待进入游戏 点击')
+        print('等待进入游戏 需要点击')
         return 1
     else:
         print('不知道在什么界面了 当前文字 ' + text)
@@ -26,15 +26,12 @@ def whereByText(text):
 
 
 def intoGame():
-    pos1 = getTextPos('点击进入')
-    if pos1:
-        cx = (pos1[0][0] + pos1[1][0]) / 2
-        cy = (pos1[0][1] + pos1[2][1]) / 2
-        UtilTouch.airtest_touch_point(cx, cy, '', 3)
-        UtilsThread.threadSleep(30)
+    # 点击进入
+    width, height = device().get_current_resolution()
+    UtilTouch.airtest_touch_point(width / 2, height / 2, '', 3)
+    UtilsThread.threadSleep(15, '等待游戏加载进入')
 
     # 领取月卡
-    width, height = device().get_current_resolution()
     UtilTouch.airtest_touch_point(width / 2, height / 2, '', 3)
     UtilTouch.airtest_touch_point(width / 2, height / 2, '', 3)
     UtilTouch.airtest_touch_point(width / 2, height / 2, '', 3)
@@ -42,4 +39,15 @@ def intoGame():
     # 领取邮件
     keyevent('{ESC}')
     time.sleep(2)
+    UtilTouch.airtest_touch_point(41,453, '点开邮件', 3)
+    UtilTouch.airtest_touch_point(126,789, '全部领取', 3)
+
+    ## 直接关机
+    killGame()
+
+
+
+
+
+
 

@@ -13,6 +13,7 @@ if __name__ == '__main__':
     while True:
         if whereByText(getPageText()) == 1:
             intoGame()
+            break
         else:
             time.sleep(5)
 
