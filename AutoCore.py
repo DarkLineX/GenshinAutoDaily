@@ -4,7 +4,6 @@ from airtest.core.api import device, keyevent
 
 import UtilTouch
 import UtilsThread
-from GameProcess import killGame
 
 
 def whereByText(text):
@@ -28,22 +27,31 @@ def whereByText(text):
 def intoGame():
     # 点击进入
     width, height = device().get_current_resolution()
-    UtilTouch.airtest_touch_point(width / 2, height / 2, '', 3)
+    UtilTouch.airtest_touch_point(width / 2, height / 2, '点击计入游戏', 3)
     UtilsThread.threadSleep(15, '等待游戏加载进入')
 
     # 领取月卡
-    UtilTouch.airtest_touch_point(width / 2, height / 2, '', 3)
-    UtilTouch.airtest_touch_point(width / 2, height / 2, '', 3)
-    UtilTouch.airtest_touch_point(width / 2, height / 2, '', 3)
+    UtilTouch.airtest_touch_point(width / 2, height / 2, '月卡1', 3)
+    UtilTouch.airtest_touch_point(width / 2, height / 2, '月卡2', 3)
+    UtilTouch.airtest_touch_point(width / 2, height / 2, '月卡3', 3)
 
     # 领取邮件
     keyevent('{ESC}')
     time.sleep(2)
     UtilTouch.airtest_touch_point(41,453, '点开邮件', 3)
-    UtilTouch.airtest_touch_point(126,789, '全部领取', 3)
+    UtilTouch.airtest_touch_point(176,725, '全部领取', 3)
+
+    keyevent('{ESC}')
+    time.sleep(2)
+    keyevent('{ESC}')
+    time.sleep(2)
+    keyevent('{F3}')
+    time.sleep(2)
+
+
 
     ## 直接关机
-    killGame()
+    # killGame()
 
 
 
