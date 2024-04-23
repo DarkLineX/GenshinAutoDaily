@@ -1,5 +1,12 @@
+import logging
+import os
+import signal
+import subprocess
+import psutil
 from airtest.cli.parser import cli_setup
 from airtest.core.api import auto_setup, device
+
+from UtilsThread import threadSleep
 
 logger = logging.getLogger("Genshin")
 process_name = "YuanShen"
@@ -52,7 +59,8 @@ def init_airtest():
         if not cli_setup():
             auto_setup(__file__, logdir=False, devices=["Windows:///?title_re=.*原神*", ])
         logger.info("start...")
-        return device()
+        d = device()
+        return d
     except Exception as e:
         logger.error('启动异常，无法找到原神游戏窗口' + str(e))
         return None

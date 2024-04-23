@@ -20,7 +20,6 @@ def getPageText():
     result_list = paddleText(test_pic)
     ptext = ""
     for r in result_list[0]:
-        print(r)
         ptext = ptext + " " + r[1][0]
     return ptext
 
